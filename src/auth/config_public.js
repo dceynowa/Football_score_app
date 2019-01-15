@@ -1,1 +1,1 @@
-export const MY_API_TOKEN = 'HERE SHOULD BE YOUR TOKEN FROM https://api.football-data.org';
+export const MY_API_TOKEN = 'HERE SHOULD BE YOUR TOKEN FROM https://api.football-data.org YOU HAVE TO CHANGE THE FILE NAME ON config.js';
