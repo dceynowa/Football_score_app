@@ -1,0 +1,1 @@
+export const MY_API_TOKEN = 'HERE SHOULD BE YOUR TOKEN FROM https://api.football-data.org';
