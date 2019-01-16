@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Grid, Row, Col, ListGroup, ListGroupItem, Image } from 'react-bootstrap';
 
 import {BASIC_URL} from '../../url/url'
 import {HEADER} from '../../auth/index' 
@@ -14,8 +14,6 @@ class Teams extends Component {
         };
     }
 
-
-    
 
     componentDidMount() {
         fetch(`${BASIC_URL}/v2/competitions/PL/teams`, HEADER)
@@ -36,7 +34,10 @@ class Teams extends Component {
                         <ListGroup id="list_of_teams" >Teams in Premier League:
                             {teams.map(team =>
                                 <ListGroupItem key={team.id}>
-                                    {team.name}
+                                    <div>
+                                    <Image src={team.crestUrl} style={{ height: 90}} />
+                                    <span style={{paddingLeft: 30}}>{team.name}</span>
+                                    </div>
                                 </ListGroupItem>
                             )}
                         </ListGroup>
