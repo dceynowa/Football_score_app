@@ -22,9 +22,10 @@ class Teams extends Component {
         .catch(err => console.error(err));
     }
     
+    showInfo = () => alert("Info");
 
     render () {
-
+        
         const { teams } = this.state;
 
         return (
@@ -33,7 +34,7 @@ class Teams extends Component {
                     <Col md={8} mdOffset={2}>
                         <ListGroup id="list_of_teams" >Teams in Premier League:
                             {teams.map(team =>
-                                <ListGroupItem key={team.id}>
+                                <ListGroupItem key={team.id} onClick={this.showInfo}>
                                     <div>
                                     <Image src={team.crestUrl} style={{ height: 90}} />
                                     <span style={{paddingLeft: 30}}>{team.name}</span>
