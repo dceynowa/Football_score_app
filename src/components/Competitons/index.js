@@ -7,41 +7,34 @@ import {HEADER} from '../../auth/index'
 
 class Competitions extends Component {
     
-    loadLogos = () => {
-        
-    }
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
-            //avaliableCompetitonsId : [2013, 2016, 2021, 2018, 2001, 2015, 2002, 2019, 2003, 2017, 2014, 2000],
-            avaliableCompetitonsId : [2021, 2001, 2002, 2019, 2014],
+            avaliableCompetitonsId : [2013, 2016, 2021, 2018, 2001, 2015, 2002, 2019, 2003, 2017, 2014, 2000],
             competitions: []
         };
     }
 
     componentDidMount() {
-        this.state.avaliableCompetitonsId.map(id => {
-        fetch(`${BASIC_URL}/v2/competitions/${id}`, HEADER)
+        fetch(`${BASIC_URL}/v2/competitions`, HEADER)
         .then(res => res.json())
-        .then(res => {this.setState(prevState => ({ competitions: [...prevState.competitions, res]}))})
-        .then(this.loadLogos())
-        .catch(err => console.error(err))
-        });
+        .then(res => this.setState({competitions: res.competitions}))
+        .catch(err => console.error(err))        
     }
-    
+
     render () {
-        
-        const { competitions } = this.state;
+        const { competitions, avaliableCompetitonsId } = this.state;
+        let filteredCompetitons = competitions.filter((competitonId) =>  avaliableCompetitonsId.includes(competitonId.id));
         
         return (
             <Grid>
                 <Row className="show-grid">
                     <Col md={8} mdOffset={2}>
                         <ListGroup id="list_of_competitons" >Choose competitions!
-                            {competitions.map(competition =>
-                                <ListGroupItem key={competition.id} data-competitionCode={competition.code} >
+                            {filteredCompetitons.map(competition =>
+                                <ListGroupItem key={competition.id} data-competition_code={competition.code} >
                                     <div>
                                         <Image alt="100x100" style={{ height: 100}} />
                                         <span style={{paddingLeft: 30}}>{competition.name}</span>
