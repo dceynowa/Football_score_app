@@ -5,6 +5,8 @@ import { Grid, Row, Col, ListGroup, ListGroupItem, Image } from 'react-bootstrap
 import {BASIC_URL} from '../../url/url'
 import {HEADER} from '../../auth/index' 
 
+
+
 class Competitions extends Component {
     
 
@@ -23,6 +25,25 @@ class Competitions extends Component {
         .then(res => this.setState({competitions: res.competitions}))
         .catch(err => console.error(err))        
     }
+    componentDidUpdate (prevProps, prevState) {
+        this.loadLogos();
+    }
+    
+
+    loadLogos = () => {
+        let myNodeList = document.querySelectorAll(`li[name=competition]`);
+
+        myNodeList.forEach(item => {
+            let competiton_code = item.getAttribute('data-competition_code');
+            let img_tag = document.querySelector(`#logo_${competiton_code}`);
+
+            if (competiton_code === 'PL') {
+                img_tag.setAttribute('src', `/../../images/logos/premier_league.png`)
+            }
+            
+        })
+
+      };
 
     render () {
         const { competitions, avaliableCompetitonsId } = this.state;
@@ -34,9 +55,9 @@ class Competitions extends Component {
                     <Col md={8} mdOffset={2}>
                         <ListGroup id="list_of_competitons" >Choose competitions!
                             {filteredCompetitons.map(competition =>
-                                <ListGroupItem key={competition.id} data-competition_code={competition.code} >
+                                <ListGroupItem key={competition.id} data-competition_code={competition.code} name="competition">
                                     <div>
-                                        <Image alt="100x100" style={{ height: 100}} />
+                                        <Image alt="100x100" style={{ height: 100}} id={`logo_${competition.code}`} />
                                         <span style={{paddingLeft: 30}}>{competition.name}</span>
                                     </div>
                                 </ListGroupItem>
