@@ -25,9 +25,9 @@ class Competitions extends Component {
         .then(res => this.setState({competitions: res.competitions}))
         .catch(err => console.error(err))        
     }
-    componentDidUpdate (prevProps, prevState) {
-        this.loadLogos();
-    }
+    // componentDidUpdate (prevProps, prevState) {
+    //     this.loadLogos();
+    // }
     
 
     loadLogos = () => {
@@ -57,7 +57,7 @@ class Competitions extends Component {
                             {filteredCompetitons.map(competition =>
                                 <ListGroupItem key={competition.id} data-competition_code={competition.code} name="competition">
                                     <div>
-                                        <Image alt="100x100" style={{ height: 100}} id={`logo_${competition.code}`} />
+                                        <Image alt="100x100" style={{ height: 100}} id={`logo_${competition.code}`} src={`/images/logos/${competition.code}.png`}/>
                                         <span style={{paddingLeft: 30}}>{competition.name}</span>
                                     </div>
                                 </ListGroupItem>
