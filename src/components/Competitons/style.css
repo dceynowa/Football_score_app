@@ -1,0 +1,21 @@
+.list_of_competitons__title {
+    text-align: center;
+    font-size: 1.4em;
+    padding: 20px 0;
+}
+
+.competitons_logo__box {
+    display: flex;
+    align-items: center;
+}
+
+.competitons_logo__box:hover, .list-group-item:hover {
+    background: #ddd;
+    cursor: pointer;
+}
+
+.competitions_logo__img {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+}

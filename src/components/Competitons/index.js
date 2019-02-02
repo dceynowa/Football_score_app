@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import { Grid, Row, Col, ListGroup, ListGroupItem, Image } from 'react-bootstrap';
 
+import './style.css';
+
 import {BASIC_URL} from '../../url/url'
 import {HEADER} from '../../auth/index' 
 
@@ -25,25 +27,10 @@ class Competitions extends Component {
         .then(res => this.setState({competitions: res.competitions}))
         .catch(err => console.error(err))        
     }
-    // componentDidUpdate (prevProps, prevState) {
-    //     this.loadLogos();
-    // }
     
-
-    loadLogos = () => {
-        let myNodeList = document.querySelectorAll(`li[name=competition]`);
-
-        myNodeList.forEach(item => {
-            let competiton_code = item.getAttribute('data-competition_code');
-            let img_tag = document.querySelector(`#logo_${competiton_code}`);
-
-            if (competiton_code === 'PL') {
-                img_tag.setAttribute('src', `/../../images/logos/premier_league.png`)
-            }
-            
-        })
-
-      };
+    showTeams = (id) => {
+        alert(id);
+    }
 
     render () {
         const { competitions, avaliableCompetitonsId } = this.state;
@@ -53,12 +40,15 @@ class Competitions extends Component {
             <Grid>
                 <Row className="show-grid">
                     <Col md={8} mdOffset={2}>
-                        <ListGroup id="list_of_competitons" >Choose competitions!
+                        <ListGroup id="list_of_competitons">
+                            <div className="list_of_competitons__title">Choose competitions!</div>
                             {filteredCompetitons.map(competition =>
                                 <ListGroupItem key={competition.id} data-competition_code={competition.code} name="competition">
-                                    <div>
-                                        <Image alt="100x100" style={{ height: 100}} id={`logo_${competition.code}`} src={`/images/logos/${competition.code}.png`}/>
-                                        <span style={{paddingLeft: 30}}>{competition.name}</span>
+                                    <div className="competitons_logo__box" onClick={() => {this.showTeams(competition.id)}}>
+                                        <div className="competitions_logo__img">
+                                            <Image alt="100x100" id={`logo_${competition.code}`} src={`/images/logos/${competition.code}.png`}/>
+                                        </div>
+                                        <span className="competitions_logo__name">{competition.name}</span>
                                     </div>
                                 </ListGroupItem>
                             )}
