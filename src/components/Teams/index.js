@@ -1,52 +1,58 @@
-import React, { Component } from 'react'
-import { Grid, Row, Col, ListGroup, ListGroupItem, Image } from 'react-bootstrap';
+import React, { Component } from "react"
+import { Thumbnail, Button } from "react-bootstrap"
 
-import {BASIC_URL} from '../../url/url'
-import {HEADER} from '../../auth/index' 
+import "./style.css"
+
+import { BASIC_URL } from "../../url/url"
+import { HEADER } from "../../auth/index"
 
 class Teams extends Component {
-    
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-            teams: [],
-        };
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      teams: []
     }
+  }
 
+  componentDidMount() {
+    fetch(`${BASIC_URL}/v2/competitions/PL/teams`, HEADER)
+      .then(res => res.json())
+      .then(res => this.setState({ teams: res.teams }))
+      .catch(err => console.error(err))
+  }
 
-    componentDidMount() {
-        fetch(`${BASIC_URL}/v2/competitions/PL/teams`, HEADER)
-        .then(res => res.json())
-        .then(res => this.setState({teams: res.teams}))
-        .catch(err => console.error(err));
-    }
-    
-    showInfo = () => alert("Info");
+  showTeam(id) {
+    alert(id)
+  }
 
-    render () {
-        
-        const { teams } = this.state;
+  render() {
+    const { teams } = this.state
 
-        return (
-            <Grid>
-                <Row className="show-grid">
-                    <Col md={8} mdOffset={2}>
-                        <ListGroup id="list_of_teams" >Teams in Premier League:
-                            {teams.map(team =>
-                                <ListGroupItem key={team.id} onClick={this.showInfo}>
-                                    <div>
-                                    <Image src={team.crestUrl} style={{ height: 90}} />
-                                    <span style={{paddingLeft: 30}}>{team.name}</span>
-                                    </div>
-                                </ListGroupItem>
-                            )}
-                        </ListGroup>
-                    </Col>
-                </Row>
-            </Grid>
-        )
-    }
+    return (
+      <>
+        {teams.map(team => (
+          <div className="team__cell" key={team.id}>
+            <Thumbnail
+              src={team.crestUrl}
+              alt="242x200"
+              className="team_logo__img"
+            >
+              <h3>{team.name}</h3>
+              <Button
+                variant="light"
+                onClick={() => {
+                  this.showTeam(team.id)
+                }}
+              >
+                Więcej
+              </Button>
+            </Thumbnail>
+          </div>
+        ))}
+      </>
+    )
+  }
 }
 
 export default Teams
