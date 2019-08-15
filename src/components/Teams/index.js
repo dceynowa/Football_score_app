@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Thumbnail, Button } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 import "./style.css"
 
@@ -39,14 +40,16 @@ class Teams extends Component {
               className="team_logo__img"
             >
               <h3>{team.name}</h3>
-              <Button
-                variant="light"
-                onClick={() => {
-                  this.showTeam(team.id)
-                }}
-              >
-                Więcej
-              </Button>
+              <Link to={`/teams/${team.id}`}>
+                <Button
+                  variant="light"
+                  // onClick={() => {
+                  //   this.showTeam(team.id)
+                  // }}
+                >
+                  Więcej
+                </Button>
+              </Link>
             </Thumbnail>
           </div>
         ))}

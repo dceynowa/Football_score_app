@@ -6,8 +6,8 @@ import "./style.css"
 
 const navItems = [
   { id: 1, name: "Start", path: "/", exact: true },
-  { id: 2, name: "Rozgywki", path: "/competitons", exact: false },
-  { id: 3, name: "Drużyny", path: "/teams", exact: false }
+  { id: 2, name: "Rozgyrwki", path: "/competitons", exact: false },
+  { id: 3, name: "Drużyny Premier League", path: "/teams", exact: false }
 ]
 
 const Navigation = () => {
