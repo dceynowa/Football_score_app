@@ -3,6 +3,10 @@ import React, { Component } from "react"
 import { BASIC_URL } from "../../url/url"
 import { HEADER } from "../../auth/index"
 
+import Flag from "../Flag"
+
+import "./style.css"
+
 class Team extends Component {
   constructor(props) {
     super(props)
@@ -23,7 +27,10 @@ class Team extends Component {
         <li key={player.id}>
           <h4>name: {player.name}</h4>
           <h5>position: {player.position}</h5>
-          <h5>nationality: {player.nationality}</h5>
+          <div className="nationalFlag">
+            <h5 className="nationalName">nationality: {player.nationality}</h5>
+            <Flag nationality={player.nationality} />
+          </div>
         </li>
       )
     })

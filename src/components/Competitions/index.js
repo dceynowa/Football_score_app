@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { BrowserRouter as Router } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { Thumbnail, Button } from "react-bootstrap"
 
@@ -49,7 +49,7 @@ class Competitions extends Component {
     )
 
     return (
-      <Router>
+      <>
         {filteredCompetitons.map(competition => (
           <div className="competiton__cell" key={competition.id}>
             <Thumbnail
@@ -58,18 +58,20 @@ class Competitions extends Component {
               className="competitions_logo__img"
             >
               <h3>{competition.name}</h3>
-              <Button
-                variant="light"
-                onClick={() => {
-                  this.showTeams(competition.id)
-                }}
-              >
-                Więcej
-              </Button>
+              <Link to={`/competitions/${competition.id}`}>
+                <Button
+                  variant="light"
+                  // onClick={() => {
+                  //   this.showTeams(competition.id)
+                  // }}
+                >
+                  Więcej
+                </Button>
+              </Link>
             </Thumbnail>
           </div>
         ))}
-      </Router>
+      </>
     )
   }
 }
