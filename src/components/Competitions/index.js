@@ -1,16 +1,16 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-import { Thumbnail, Button } from "react-bootstrap"
+import { Thumbnail, Button } from "react-bootstrap";
 
-import "./style.css"
+import "./style.css";
 
-import { BASIC_URL } from "../../url/url"
-import { HEADER } from "../../auth/index"
+import { BASIC_URL } from "../../url/url";
+import { HEADER } from "../../auth/index";
 
 class Competitions extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       avaliableCompetitonsId: [
@@ -28,25 +28,25 @@ class Competitions extends Component {
         2000
       ],
       competitions: []
-    }
+    };
   }
 
   componentDidMount() {
     fetch(`${BASIC_URL}/v2/competitions`, HEADER)
       .then(res => res.json())
       .then(res => this.setState({ competitions: res.competitions }))
-      .catch(err => console.error(err))
+      .catch(err => console.error(err));
   }
 
   showTeams = id => {
-    alert(id)
-  }
+    alert(id);
+  };
 
   render() {
-    const { competitions, avaliableCompetitonsId } = this.state
+    const { competitions, avaliableCompetitonsId } = this.state;
     let filteredCompetitons = competitions.filter(competitonId =>
       avaliableCompetitonsId.includes(competitonId.id)
-    )
+    );
 
     return (
       <>
@@ -58,7 +58,7 @@ class Competitions extends Component {
               className="competitions_logo__img"
             >
               <h3>{competition.name}</h3>
-              <Link to={`/competitions/${competition.id}`}>
+              <Link to={`/competitions/${competition.code}/table`}>
                 <Button
                   variant="light"
                   // onClick={() => {
@@ -72,8 +72,8 @@ class Competitions extends Component {
           </div>
         ))}
       </>
-    )
+    );
   }
 }
 
-export default Competitions
+export default Competitions;
