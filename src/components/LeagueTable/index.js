@@ -13,18 +13,20 @@ class LeagueTable extends Component {
   }
 
   componentDidMount() {
-    const { league_code } = this.props.match.params
+    const { league_code } = this.props
     fetch(`${BASIC_URL}/v2/competitions/${league_code}/standings`, HEADER)
       .then(res => res.json())
       .then(data => this.setState({ standings: data.standings }))
   }
 
   render() {
+    const { type } = this.props
+
     let table = []
     let standings = [...this.state.standings]
 
     standings = standings
-      .filter(item => item.type === "TOTAL")
+      .filter(item => item.type === type)
       .map(item => (table = item.table))
 
     const tableBody = table.map(item => (
