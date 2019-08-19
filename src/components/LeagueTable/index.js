@@ -1,9 +1,11 @@
 import React, { Component } from "react"
 
+import { Table } from "react-bootstrap"
+
 import { BASIC_URL } from "../../url/url"
 import { HEADER } from "../../auth/index"
 
-import { Table } from "react-bootstrap"
+import "./style.css"
 
 class LeagueTable extends Component {
   state = {
@@ -26,14 +28,23 @@ class LeagueTable extends Component {
       .map(item => (table = item.table))
 
     const tableBody = table.map(item => (
-      <tr>
-        <td>{item.position}</td>
-        <td>{item.team.name}</td>
-        <td>{item.playedGames}</td>
-        <td>{item.won}</td>
-        <td>{item.draw}</td>
-        <td>{item.lost}</td>
-        <td>
+      <tr key={item.position} className="league_table_body_tr">
+        <td className="league_table_body_td text-center">{item.position}</td>
+        <td className="league_table_body_td">
+          <div className="league_table_team_log_div_img">
+            <img
+              className="league_table_team_log_img"
+              src={item.team.crestUrl}
+              alt="logo"
+            />
+          </div>
+          {item.team.name}
+        </td>
+        <td className="league_table_body_td text-center">{item.playedGames}</td>
+        <td className="league_table_body_td text-center">{item.won}</td>
+        <td className="league_table_body_td text-center">{item.draw}</td>
+        <td className="league_table_body_td text-center">{item.lost}</td>
+        <td className="league_table_body_td text-center">
           {item.goalsFor} - {item.goalsAgainst}
         </td>
       </tr>
@@ -44,13 +55,13 @@ class LeagueTable extends Component {
         <Table striped hover responsive>
           <thead>
             <tr>
-              <th>#</th>
+              <th className="text-center">#</th>
               <th>DRUŻYNA</th>
-              <th>MECZE</th>
-              <th>ZWYCIESTWA</th>
-              <th>REMISY</th>
-              <th>PORAŻKI</th>
-              <th>BILANS</th>
+              <th className="text-center">MECZE</th>
+              <th className="text-center">ZWYCIESTWA</th>
+              <th className="text-center">REMISY</th>
+              <th className="text-center">PORAŻKI</th>
+              <th className="text-center">BILANS</th>
             </tr>
           </thead>
           <tbody>{tableBody}</tbody>
