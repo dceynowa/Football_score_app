@@ -42,6 +42,7 @@ class LeagueTable extends Component {
           </div>
           {item.team.name}
         </td>
+        <td className="league_table_body_td text-center">{item.points}</td>
         <td className="league_table_body_td text-center">{item.playedGames}</td>
         <td className="league_table_body_td text-center">{item.won}</td>
         <td className="league_table_body_td text-center">{item.draw}</td>
@@ -59,6 +60,7 @@ class LeagueTable extends Component {
             <tr>
               <th className="text-center">#</th>
               <th>DRUŻYNA</th>
+              <th className="text-center">PUNKTY</th>
               <th className="text-center">MECZE</th>
               <th className="text-center">ZWYCIESTWA</th>
               <th className="text-center">REMISY</th>
