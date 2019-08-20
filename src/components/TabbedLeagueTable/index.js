@@ -2,6 +2,7 @@ import React from "react"
 import { Tab, Tabs } from "react-bootstrap"
 
 import LeagueTable from "../LeagueTable"
+import TopScorers from "../TopScorers"
 
 import "./style.css"
 
@@ -23,6 +24,10 @@ const TabbedLeagueTable = props => {
 
       <Tab className="tab_league_table" eventKey={3} title="Na wyjeździe">
         <LeagueTable league_code={league_code} type="AWAY" />
+      </Tab>
+
+      <Tab className="tab_league_table" eventKey={4} title="Strzelcy">
+        <TopScorers league_code={league_code} />
       </Tab>
     </Tabs>
   )
