@@ -1,3 +1,11 @@
-.tabs_league_table {
+.tab_league_table {
   margin-top: 15px;
+}
+
+.tabs_league_table {
+  width: 100%;
+}
+
+.tabs_league_table a {
+  color: #55ba01;
 }
