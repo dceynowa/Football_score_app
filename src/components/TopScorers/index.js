@@ -4,7 +4,7 @@ import { Table } from "react-bootstrap"
 
 import Flag from "../Flag"
 
-import { BASIC_URL, COUNTRY_API_URL } from "../../url/url"
+import { BASIC_URL } from "../../url/url"
 import { HEADER } from "../../auth/index"
 
 class TopScorers extends Component {
@@ -28,11 +28,8 @@ class TopScorers extends Component {
         <td className="text-center">{index + 1}</td>
         <td>
           <div className="nationalFlag">
+            <Flag nationality={item.player.nationality} />
             {item.player.name}
-            <Flag
-              nationality={item.player.nationality}
-              className="topScorers_countryFlag_img"
-            />
           </div>
         </td>
 
