@@ -1,3 +1,4 @@
-.countryFlag_img {
-  height: 14px;
+.countryFlag {
+  max-height: 15px;
+  vertical-align: middle;
 }

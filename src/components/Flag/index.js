@@ -1,40 +1,22 @@
-import React, { Component } from "react"
+import React from "react"
 
-import { COUNTRY_API_URL } from "../../url/url"
+import { countriesData } from "../../data/countries"
 
+import "flag-icon-css/css/flag-icon.min.css"
 import "./style.css"
 
-class Flag extends Component {
-  state = {
-    countryNameWithFlags: []
-  }
-  componentDidMount() {
-    fetch(`${COUNTRY_API_URL}?fields=name;flag;`)
-      .then(res => res.json())
-      .then(res => this.setState({ countryNameWithFlags: res }))
-  }
+const Flag = props => {
+  const { nationality } = props
 
-  render() {
-    const { nationality } = this.props
+  const nationalityCode = countriesData.countries
+    .filter(item => item.name === nationality)
+    .map(item => item.code.toLocaleLowerCase())
 
-    const FlagSrc = this.state.countryNameWithFlags
-      .filter(item => item.name === nationality)
-      .map(item => {
-        console.log(item.name)
-        return item.flag
-      })
-
-    console.log(`nationality: ${nationality}`)
-    console.log(`filter: ${FlagSrc.length}`)
-
-    return (
-      <>
-        {FlagSrc.length === 1 ? (
-          <img className="countryFlag_img" src={FlagSrc} alt="flag" />
-        ) : null}
-      </>
-    )
-  }
+  return (
+    <>
+      <span className={`flag-icon flag-icon-${nationalityCode} countryFlag`} />
+    </>
+  )
 }
 
 export default Flag
