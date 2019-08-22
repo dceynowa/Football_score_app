@@ -1,11 +1,14 @@
 import React, { Component } from "react"
 
 import { Table } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 import Flag from "../Flag"
 
 import { BASIC_URL } from "../../url/url"
 import { HEADER } from "../../auth/index"
+
+import "./style.css"
 
 class TopScorers extends Component {
   state = {
@@ -32,8 +35,11 @@ class TopScorers extends Component {
             {item.player.name}
           </div>
         </td>
-
-        <td>{item.team.name}</td>
+        <td>
+          <Link to={`/teams/${item.team.id}`} className="topScorers_team_link">
+            {item.team.name}
+          </Link>
+        </td>
         <td className="text-center">{item.numberOfGoals}</td>
       </tr>
     ))
