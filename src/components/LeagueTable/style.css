@@ -14,3 +14,7 @@
 .table > tbody > tr > td.league_table_body_td {
   vertical-align: middle;
 }
+
+.tabs_league_table .leagueTable_team_link {
+  color: #000;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 
 import { Table } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 import { BASIC_URL } from "../../url/url"
 import { HEADER } from "../../auth/index"
@@ -25,7 +26,7 @@ class LeagueTable extends Component {
     let table = []
     let standings = [...this.state.standings]
 
-    standings = standings
+    standings
       .filter(item => item.type === type)
       .map(item => (table = item.table))
 
@@ -33,14 +34,19 @@ class LeagueTable extends Component {
       <tr key={item.position} className="league_table_body_tr">
         <td className="league_table_body_td text-center">{item.position}</td>
         <td className="league_table_body_td">
-          <div className="league_table_team_log_div_img">
-            <img
-              className="league_table_team_log_img"
-              src={item.team.crestUrl}
-              alt="logo"
-            />
-          </div>
-          {item.team.name}
+          <Link
+            to={`/teams/${item.team.id}`}
+            className="leagueTable_team_link leagueTable_team_link"
+          >
+            <div className="league_table_team_log_div_img">
+              <img
+                className="league_table_team_log_img"
+                src={item.team.crestUrl}
+                alt="logo"
+              />
+            </div>
+            {item.team.name}
+          </Link>
         </td>
         <td className="league_table_body_td text-center">{item.points}</td>
         <td className="league_table_body_td text-center">{item.playedGames}</td>
