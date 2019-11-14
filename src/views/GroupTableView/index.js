@@ -3,8 +3,12 @@ import React from "react"
 import { Table } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
-const ReagularSeasonTableView = props => {
-  const { table, league_code } = props
+const GroupTableView = props => {
+  const { group, table } = props
+
+  console.log(props)
+
+  const groupName = `GRUPA ${group.slice(-1)}`
 
   const tableBody = table.map(item => {
     return (
@@ -43,7 +47,7 @@ const ReagularSeasonTableView = props => {
         <thead>
           <tr>
             <th className="text-center">#</th>
-            <th>DRUŻYNA</th>
+            <th>{groupName}</th>
             <th className="text-center">PUNKTY</th>
             <th className="text-center">MECZE</th>
             <th className="text-center">ZWYCIESTWA</th>
@@ -58,4 +62,4 @@ const ReagularSeasonTableView = props => {
   )
 }
 
-export default ReagularSeasonTableView
+export default GroupTableView
